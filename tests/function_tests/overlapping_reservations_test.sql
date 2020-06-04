@@ -1,4 +1,4 @@
--- Wykorzystamy klient�w 99120522231 i 80121923763 do rezerwacji pokoju typu "2"
+-- Wykorzystamy klientów 99120522231 i 80121923763 do rezerwacji pokoju typu "2"
 -- w nachodzących na siebie terminach. Istnieje tylko jeden pokój tego typu, więc przy
 -- próbie dokonania drugiej rezerwacji powinien wystąpić błąd.
 BEGIN

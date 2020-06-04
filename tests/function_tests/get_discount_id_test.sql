@@ -1,4 +1,4 @@
--- Wypiszemy sugerowane znizki niekt髍ych klient贸w wraz z ich
+-- Wypiszemy sugerowane znizki niekt贸rych klient贸w wraz z ich
 -- dat膮 do艂膮czenia do grona klient贸w
 DECLARE
     V_DISCOUNT_ID NUMBER;
