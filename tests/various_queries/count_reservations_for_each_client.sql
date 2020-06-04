@@ -1,0 +1,11 @@
+-- Rezerwacje pochodzą z testu `select_number_of_reservations_for_each_month.sql`
+SELECT
+    CLIENTS.CLIENT_ID,
+    FIRST_NAME,
+    LAST_NAME,
+    COUNT(*) AS RESERVATION_COUNT
+FROM
+    CLIENTS JOIN RESERVATIONS
+    ON CLIENTS.CLIENT_ID = RESERVATIONS.CLIENT_ID
+GROUP BY
+    CLIENTS.CLIENT_ID, FIRST_NAME, LAST_NAME;
