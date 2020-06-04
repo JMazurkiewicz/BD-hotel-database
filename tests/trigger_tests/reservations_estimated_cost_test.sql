@@ -4,5 +4,5 @@
 -- Do przetestowania tego wyzwalacza wykorzystamy funkcję `HOTEL.RESERVE`.
 -- Osobą rezerwującą będzie pan Marcin z testu `add_doj_for_client_test`.
 BEGIN
-    HOTEL.RESERVE('72122648293', 0, '01/apr/2021', '05/apr/2021', NULL);
+    HOTEL.RESERVE(72122648293, 0, '01/apr/2021', '05/apr/2021', NULL);
 END;

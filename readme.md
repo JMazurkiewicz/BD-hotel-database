@@ -16,9 +16,17 @@
 
 ![relational](pics/relational.png)
 
-## Baza danych
-
 ### Tabele
+
+* `CLIENT` to tabela przechowująca klientów i ich dane kontaktowe.
+* `RESERVATIONS` to tabela przechowująca terminy rezerwacji i przewidywany koszt. Tabela ta stanowi "łącznik" między klientami a pokojami. Tutaj też dodawane są promocje na wynajem pokoju.
+* `DISCOUNTS` to tabela przechowująca zniżki. Będą to zniżki wynikające z bycia np. stałym klientem lub bycia pracownikiem firmy partnerskiej.
+* `ROOMS` to tabela przechowująca numer pokoju.
+* `ROOM_TYPES` to tabela przechowująca informacje o typie pokoju, np. czy jest to pokój z widokiem.
+* `SECTORS` to tabela grupująca pokoje w sektory. Ma to ułatwić przydzielanie pracowników do obsługi danych pokoi (np. 5 pracowników będzie obsługiwało dany segment).
+* `WORKERS` to tabela przechowująca pracowników, których zadaniem jest utrzymanie pokojów w czystości.
+* `OFFERS` to tabela przechowująca dodatkowe oferty, które klient może opcjonalnie nabyć (na oferty zniżki nie przysługują), np. karnet do sauny, rower, śniadanie w hotelu.
+* `BOUGHT_OFFERS` to tabela łącząca klientów z kupionymi przez nich ofertami.
 
 ### Wyzwalacze
 
@@ -27,7 +35,7 @@
 * `RESERVATIONS_ESTIMATED_COST` to wyzwalacz obliczający przewidywany koszt końcowy rezerwacji. Jego uruchomienie zależy nie tylko od wstawienia nowej rezerwacji, kiedy to koszt jest obliczany po raz pierwszy, ale również od zmiany długości rezerwacji.
 * `BOUGHT_OFFERS_AUTOINCR` to wyzwalacz implementujący klucz autoinkrementowany dla tabeli `BOUGHT_OFFERS`.
 * `BOUGHT_OFFERS_ESTIMATED_COST` to wyzwalacz obliczający przewidywany koszt końcowy wynikający z wykorzystania oferty. Uruchamiany jest po raz pierwszy przy zakupie oferty oraz ewentualnie później przy zmianie czasu korzystania z oferty.
-* `SECTOR_SIZE_CONTROL_[]` to wyzwalacze obliczające rozmiar sektora w zależności od tego, ile pokoi się w nim znajduje.
+* `SECTOR_SIZE_CONTROL` to wyzwalacze obliczające rozmiar sektora w zależności od tego, ile pokoi się w nim znajduje. Wyzwalany jest w momencie dodania nowego pokoju - pokoje z założenia nie znikają (`DELETE` nie zostanie wykonane) oraz nie zmieniają położenia (`UPDATE` też nie zostanie wykonane).
 
 ### Procedury
 
@@ -51,3 +59,7 @@
   * `ARG_END_DATE` - koniec hipotetycznej rezerwacji.
 * `CALCULATE_MONTHLY_INCOME` to funkcja obliczająca przychód wynikający z wynajmowania pokoi i sprzedaży różnych ofert. Argumenty `MONTH_NUMBER` i `YEAR_NUMBER` określają dla którego miesiąca obliczyć przychód.
 * `GET_DISCOUNT_ID` to funkcja sprawdzająca czy danemu klientowi można przydzielić automatyczną zniżkę, czyli taką która wynika z bycia stałym klientem.
+
+### Wykorzystanie kursorów
+
+Z kursorów korzysta funkcja `IS_RESERVATION_VALID` oraz procedura `RESERVE`.
