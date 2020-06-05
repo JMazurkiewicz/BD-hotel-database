@@ -11,3 +11,7 @@
 ## `count_reservations_for_each_client`
 
 ![res](pics/count_reservations_for_each_client_result.png)
+
+## `count_rooms_on_each_level`
+
+![res](pics/count_rooms_on_each_level_result.png)

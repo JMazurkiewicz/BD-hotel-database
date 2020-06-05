@@ -1,10 +1,42 @@
 # Baza danych do obsługi hotelu
 
+## Opis
+
+Baza danych realizuje obsługę klientów w hotelu. Klient ma możliwość:
+
+* Wynajęcia pokoju: klient ma możliwość wyboru pokoju dowolnego typu, o ile jest on w danym terminie wolny.
+
+* Wynajęcia usługi dodatkowej (np. roweru, kolacji, motorówki).
+
+* Wykorzystania zniżki przy wynajmowaniu pokoju (zniżki nie łączą się).
+
+Ponadto:
+
+* Pokoje są pogrupowane w sektory, które są obsługiwane przez pracowników. Każdy pokój ma określony typ dzięki czemu łatwiej jest znaleźć wolne miejsce dla gościa.
+
+* Klientom przysługują zniżki, które mogą wynikać z bycia stałym gościem lub z innych indywidualnych powodów.
+
+Baza też umożliwia obliczenie całkowitego przychodu ze sprzedaży pokoi oraz ofert, bezkolizyjne dokonywanie rezerwacji czy znalezienie najkorzystniejszej zniżki dla danego klienta.
+
+## Zmiany względem pierwotnej koncepcji
+
+Niektóre elementy z pierwotnej koncepcji zostały zmienione, między innymi:
+
+* Procedura `ASSIGN_DISCOUNT` - została zastąpiona funkcją `GET_DISCOUNT_ID`, która pozwala uzyskać proponowaną zniżkę bez jej przypisywania.
+
+* Wyzwalacz sprawdzający prawidłowość rezerwacji został zastąpiony funkcją `IS_RESERVATION_VALID`, która może być użyta w różnych kontekstach (nie tylko przy wstawianiu/zmienianiu rekordu).
+
+* Wyzwalacz sprawdzający czy sektor ma obsługę został usunięty. Obsługa sektorów nie jest istotna dla tej bazy danych (wymagałoby to stworzenie dodatkowego grafiku pracowników i innych tabel co zdecydowanie skomplikowałoby bazę). Zamiast tego pojawił się wyzwalacz zliczający ilość pokojów dla każdego sektora, co w przyszłości może pozwolić na efektywniejszą implementację grafiku pracowników.
+
+## Możliwości dalszego rozwoju
+
+W przyszłości baza mogłaby dodatkowo obsługiwać grafik pracowników wykorzystując już istniejące tabele `SECTORS` i `WORKERS` (ta tabela mogłaby być rozszerzona o dodatkowe kolumny pozwalające na lepszą identyfikację pracownika).
+
 ## Katalogi
 
 * `/script` - katalog zawierający wszystkie skrypty budujące bazę danych (wraz z opisami w plikach `readme.md`).
 * `/tests` - katalog zawierający pliki testujące funkcjonalności zaimplementowane w bazie danych (wraz z opisami w plikach `readme.md`).
-* `/pics` - te katalogi zawierają obrazy dla plików `.md`.
+* `/pics` - katalogi zawierające obrazy dla plików `.md`.
 
 ## Analiza rozwiązania
 
