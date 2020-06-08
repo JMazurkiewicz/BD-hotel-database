@@ -28,7 +28,7 @@ END;
 -- 4*15 + 4*20 + 5*15 = 215
 --
 -- Uznawane zniżki:
--- 69031334713 ma zniżkę od id `1` o wartości 15%
+-- 69031334713 ma zniżkę o id `1` (o wartości 15%)
 --
 -- Przychód z wynajmu:
 -- 4*280 + 9*280*0.85 + 6*320 + 360*5 = 6982
